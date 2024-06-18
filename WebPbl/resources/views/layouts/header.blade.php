@@ -90,9 +90,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('admin/subject/list')}}" class="nav-link @if(request()->segment(2) == 'subject') active @endif">
+                    <a href="{{url('admin/ukur/list')}}" class="nav-link @if(request()->segment(2) == 'subject') active @endif">
                         <i class="nav-icon far fa-user"></i>
-                        <p>Subject</p>
+                        <p>Mengukur</p>
                     </a>
                 </li>
 

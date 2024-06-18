@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AnakController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\UkurController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AnakMiddleware;
 
@@ -39,7 +40,7 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::post('admin/anak/edit/{id}',[AnakController::class,'update']);
     Route::get('admin/anak/delete/{id}',[AnakController::class,'delete']);
 
-
+    Route::get('admin/ukur/list',[UkurController::class,'list']);
 });
 
 Route::middleware(AnakMiddleware::class)->group(function () {
