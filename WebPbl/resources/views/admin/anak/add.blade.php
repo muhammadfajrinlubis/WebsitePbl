@@ -25,81 +25,75 @@
                   {{ csrf_field() }}
                   <div class="card-body">
                     <div class="row">
-                      <!-- Row 1 -->
-                      <div class="form-group col-md-6">
-                        <label>Nama</label>
-                        <input type="text" class="form-control" value="{{ old('name') }}" name="name" required placeholder="Name">
+                      <!-- Data Anak -->
+                      <div class="col-md-6">
+                        <h3>Data Anak</h3>
+                        <div class="form-group">
+                          <label>Nama</label>
+                          <input type="text" class="form-control" value="{{ old('name') }}" name="name" required placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                          <label>Tempat Lahir</label>
+                          <input type="text" class="form-control" value="{{ old('tmp_lahir') }}" name="tmp_lahir" required placeholder="Tempat Lahir">
+                        </div>
+                        <div class="form-group">
+                          <label>Email</label>
+                          <input type="text" class="form-control" value="{{ old('email') }}" name="email" required placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                          <label>Tanggal Lahir</label>
+                          <input type="date" class="form-control" value="{{ old('tgl_lahir') }}" name="tgl_lahir" required placeholder="Tanggal Lahir">
+                        </div>
+                        <div class="form-group">
+                          <label>Alamat</label>
+                          <input type="text" class="form-control" value="{{ old('alamat') }}" name="alamat" placeholder="Alamat">
+                        </div>
+                        <div class="form-group">
+                          <label>Jenis Kelamin</label>
+                          <select name="gender" class="form-control" id="gender">
+                            <option value="">Pilih Jenis Kelamin</option>
+                            <option value="Laki - Laki">Laki-Laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                            <option value="Lainnya">Lainnya</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" name="password" required placeholder="Password">
+                          </div>
+                          <div class="form-group">
+                            <label>Foto</label>
+                            <input type="file" class="form-control" name="profile" placeholder="profile">
+                          </div>
                       </div>
-                      <div class="form-group col-md-6">
-                        <label>Tempat Lahir</label>
-                        <input type="text" class="form-control" value="{{ old('tmp_lahir') }}" name="tmp_lahir" required placeholder="Tempat Lahir">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label>Email</label>
-                        <input type="text" class="form-control" value="{{ old('email') }}" name="email" required placeholder="Email">
-                      </div>
+                      <!-- Data Orang Tua -->
+                      <div class="col-md-6">
+                        <h3>Data Orang Tua</h3>
+                        <div class="form-group">
+                          <label>Nama Ibu</label>
+                          <input type="text" class="form-control" value="{{ old('nm_ibu') }}" name="nm_ibu" placeholder="Nama Ibu">
+                        </div>
+                        <div class="form-group">
+                          <label>Tempat Lahir Ibu</label>
+                          <input type="text" class="form-control" value="{{ old('tmp_lahir_ibu') }}" name="tmp_lahir_ibu" placeholder="Tempat Lahir">
+                        </div>
+                        <div class="form-group">
+                          <label>Tanggal Lahir Ibu</label>
+                          <input type="date" class="form-control" value="{{ old('tgl_lahir_ibu') }}" name="tgl_lahir_ibu" placeholder="Tanggal Lahir">
+                        </div>
+                        <div class="form-group">
+                          <label>Nama Ayah</label>
+                          <input type="text" class="form-control" value="{{ old('nm_ayah') }}" name="nm_ayah" placeholder="Nama Ayah">
+                        </div>
+                        <div class="form-group">
+                          <label>Tempat Lahir Ayah</label>
+                          <input type="text" class="form-control" value="{{ old('tmp_lahir_ayah') }}" name="tmp_lahir_ayah" placeholder="Tempat Lahir">
+                        </div>
+                        <div class="form-group">
+                          <label>Tanggal Lahir Ayah</label>
+                          <input type="date" class="form-control" value="{{ old('tgl_lahir_ayah') }}" name="tgl_lahir_ayah" placeholder="Tanggal Lahir">
+                        </div>
 
-                      <!-- Row 2 -->
-
-                      <div class="form-group col-md-6">
-                        <label>Tanggal Lahir</label>
-                        <input type="date" class="form-control" value="{{ old('tgl_lahir') }}" name="tgl_lahir" required placeholder="Tanggal Lahir">
-                      </div>
-
-                      <!-- Row 3 -->
-                      <div class="form-group col-md-6">
-                        <label>Alamat</label>
-                        <input type="text" class="form-control" value="{{ old('alamat') }}" name="alamat" required placeholder="Alamat">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label>Jenis Kelamin</label>
-                        <select name="gender" class="form-control" id="gender">
-                          <option value="">Pilih Jenis Kelamin</option>
-                          <option value="Laki - Laki">Laki-Laki</option>
-                          <option value="Perempuan">Perempuan</option>
-                          <option value="Lainnya">Lainnya</option>
-                        </select>
-                      </div>
-
-                      <!-- Row 4 -->
-
-                      <div class="form-group col-md-6">
-                        <label>Nama Ibu</label>
-                        <input type="text" class="form-control" value="{{ old('nm_ibu') }}" name="nm_ibu" placeholder="Nama Ibu">
-                      </div>
-
-                      <!-- Row 5 -->
-                      <div class="form-group col-md-6">
-                        <label>Tempat Lahir Ibu</label>
-                        <input type="text" class="form-control" value="{{ old('tmp_lahir_ibu') }}" name="tmp_lahir_ibu" placeholder="Tempat Lahir">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label>Tanggal Lahir Ibu</label>
-                        <input type="date" class="form-control" value="{{ old('tgl_lahir_ibu') }}" name="tgl_lahir_ibu" placeholder="Tanggal Lahir">
-                      </div>
-
-                      <!-- Row 6 -->
-                      <div class="form-group col-md-6">
-                        <label>Nama Ayah</label>
-                        <input type="text" class="form-control" value="{{ old('nm_ayah') }}" name="nm_ayah" required placeholder="Nama Ayah">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label>Tempat Lahir Ayah</label>
-                        <input type="text" class="form-control" value="{{ old('tmp_lahir_ayah') }}" name="tmp_lahir_ayah" required placeholder="Tempat Lahir">
-                      </div>
-
-                      <!-- Row 7 -->
-                      <div class="form-group col-md-6">
-                        <label>Tanggal Lahir Ayah</label>
-                        <input type="date" class="form-control" value="{{ old('tgl_lahir_ayah') }}" name="tgl_lahir_ayah" required placeholder="Tanggal Lahir">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label>Password</label>
-                        <input type="password" class="form-control" name="password" required placeholder="Password">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label>Foto</label>
-                        <input type="file" class="form-control" name="profile" placeholder="profile">
                       </div>
                     </div>
                   </div>

@@ -1,14 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\AdminController;
+use App\Http\Middleware\AnakMiddleware;
 use App\Http\Controllers\AnakController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\UkurController;
 use App\Http\Middleware\AdminMiddleware;
-use App\Http\Middleware\AnakMiddleware;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\DashboardController;
+
+
 
 Route::get('/',[AuthController::class,'login']);
 Route::get('login',[AuthController::class,'AuthLogin'])->name('login')->middleware('guest');
@@ -40,7 +43,14 @@ Route::middleware(AdminMiddleware::class)->group(function () {
     Route::post('admin/anak/edit/{id}',[AnakController::class,'update']);
     Route::get('admin/anak/delete/{id}',[AnakController::class,'delete']);
 
-    Route::get('admin/ukur/list',[UkurController::class,'list']);
+
+    Route::get('admin/ukur/list',[DataController::class,'list']);
+    Route::get('admin/ukur/add',[DataController::class,'add']);
+    Route::post('admin/ukur/add{id}',[DataController::class,'insert']);
+    Route::get('admin/ukur/edit/{id}',[DataController::class,'edit']);
+    Route::post('admin/ukur/edit/{id}',[DataController::class,'update']);
+    Route::get('admin/ukur/delete/{id}',[DataController::class,'delete']);
+
 });
 
 Route::middleware(AnakMiddleware::class)->group(function () {

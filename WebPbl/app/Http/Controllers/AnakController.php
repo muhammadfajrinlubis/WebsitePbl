@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class AnakController extends Controller
 {
@@ -97,7 +98,6 @@ class AnakController extends Controller
             'nm_ayah' => 'required|string|max:255',
             'tmp_lahir_ayah' => 'required|string|max:255',
             'tgl_lahir_ayah' => 'required|date',
-            'password' => 'nullable|string|min:8',
             'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -107,9 +107,6 @@ class AnakController extends Controller
         // Update user fields with the validated data
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
-        if (!empty($validatedData['password'])) {
-            $user->password = Hash::make($validatedData['password']);
-        }
         $user->tmp_lahir = $validatedData['tmp_lahir'];
         $user->tgl_lahir = $validatedData['tgl_lahir'];
         $user->alamat = $validatedData['alamat'];

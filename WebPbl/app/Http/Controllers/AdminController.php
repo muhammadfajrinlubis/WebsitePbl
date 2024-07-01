@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use app\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
