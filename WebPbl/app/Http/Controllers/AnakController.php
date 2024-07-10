@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\User;
+use App\Models\Measurement;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 
 class AnakController extends Controller
 {
-    public function list(){
+    public function list()
+    {
         $data['getRecord'] = User::getAnak();
         $data['header_title'] = "Anak List";
-        return view('admin.anak.list',$data);
+        return view('admin.anak.list', $data);
     }
 
-    public function add(){
-
-        $data['header_title'] = "add new anak";
-        return view('admin.anak.add',$data);
+    public function add()
+    {
+        $data['header_title'] = "Add New Anak";
+        return view('admin.anak.add', $data);
     }
 
     public function insert(Request $request)
@@ -26,7 +29,6 @@ class AnakController extends Controller
         request()->validate([
             'email' => 'required|email|unique:users',
             'height' => 'max:10',
-            'height' =>'max:10',
         ]);
 
         $validatedData = $request->validate([
@@ -45,7 +47,8 @@ class AnakController extends Controller
             'password' => 'required|string|min:8',
             'profile' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-       $user = new User();
+
+        $user = new User();
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
         $user->password = Hash::make($validatedData['password']);
@@ -61,25 +64,25 @@ class AnakController extends Controller
         $user->tgl_lahir_ayah = $validatedData['tgl_lahir_ayah'];
 
         if ($request->hasFile('profile')) {
-            $fileName = time().'.'.$request->profile->extension();
+            $fileName = time() . '.' . $request->profile->extension();
             $request->profile->move(public_path('profiles'), $fileName);
             $user->profile = $fileName;
         }
 
         $user->save();
 
-        return redirect('admin/anak/list')->with('success',"Anak Successfully created");
+        return redirect('admin/anak/list')->with('success', "Anak Successfully created");
     }
-    public function edit($id){
 
+    public function edit($id)
+    {
         $data['getRecord'] = User::getSingle($id);
-        if(!empty($data['getRecord'])){
-            $data['header_title'] = "edit data Anak";
-            return view('admin.anak.edit',$data);
-        }else{
+        if (!empty($data['getRecord'])) {
+            $data['header_title'] = "Edit Data Anak";
+            return view('admin.anak.edit', $data);
+        } else {
             abort(404);
         }
-
     }
 
     public function update(Request $request, $id)
@@ -122,7 +125,7 @@ class AnakController extends Controller
         if ($request->hasFile('profile')) {
             // Delete old profile picture if exists
             if ($user->profile) {
-                User::delete(public_path('profiles/' . $user->profile));
+                @unlink(public_path('profiles/' . $user->profile));
             }
             $fileName = time() . '.' . $request->profile->extension();
             $request->profile->move(public_path('profiles'), $fileName);
@@ -135,15 +138,19 @@ class AnakController extends Controller
         return redirect('admin/anak/list')->with('success', 'Anak successfully updated');
     }
 
-    public function delete($id){
-    $user = User::getSingle($id);
-    $user ->delete();
-    $user->is_delete = 2;
+    public function delete($id)
+    {
+        $user = User::getSingle($id);
+        $user->is_delete = 2;
+        $user->save();
+        $user->delete();
+
+        return redirect('admin/anak/list')->with('error', "Anak Successfully Deleted");
+    }
+
+    
 
 
-
-    return redirect('admin/anak/list')->with('error',"anak Successfully Deleted");
-}
 
 
 }

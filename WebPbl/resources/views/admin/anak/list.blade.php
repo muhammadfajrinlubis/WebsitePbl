@@ -11,7 +11,7 @@
                 <h3 class="card-title">Anak List</h3>
               </div>
               <div class="col-sm-6" style="text-align: right">
-                <a href="{{url('admin/anak/add')}}" class="btn btn-primary">add New Anak</a>
+                <a href="{{url('admin/anak/add')}}" class="btn btn-primary">Add New Anak</a>
                 <h1></h1>
               </div>
 
@@ -26,7 +26,7 @@
           <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Secarch Nama </h3>
+                    <h3 class="card-title">Cari Nama </h3>
                   </div>
                 <form method="get" action="">
                   {{ csrf_field()}}
@@ -43,7 +43,7 @@
 
                 </div>
                   <div class="form-group col-md-3">
-                    <button class="btn btn-primary" type="submit" style="margin-top : 30px;">Secarch</button>
+                    <button class="btn btn-primary" type="submit" style="margin-top : 30px;">Search</button>
                     <a href="{{url('admin/class/list')}}" class="btn btn-success" style="margin-top : 30px;">Reset</a>
                   </div>
 
@@ -90,7 +90,7 @@
                       </th>
                       <td>{{$value->name}}</td>
                       <td>{{$value->alamat}}</td>
-                      <td>{{ Carbon::parse($value->tgl_lahir)->age }} Tahun</td>
+                      <td>{{ round(Carbon::parse($value->tgl_lahir)->diffInMonths(Carbon::now())) }} Bulan</td>
                       <td>{{$value->gender}}</td>
                       <td>{{$value->nm_ibu}}</td>
                       <td>{{$value->nm_ayah}}</td>

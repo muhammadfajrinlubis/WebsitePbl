@@ -2,25 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Measurement;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class UkurController extends Controller
 {
-    public function list(){
-        $data['getRecord'] = User::getAdmin();
-        $data['header_title'] = "Ukuran List";
-        $data = [
-            'labels' => ['0', '1', '2', '3', '4', '5'],
-            'growthLines' => [
-                'optimal' => [50, 75, 85, 95, 105, 115],
-                'average' => [48, 72, 82, 92, 102, 112],
-                'belowAverage' => [45, 70, 80, 90, 100, 110]
-            ]
-        ];
+    /**
+     * Display a listing of the resource.
+     */
+    public function list(Request $request)
+    {
+        // Search functionality
+        $query = Measurement::query();
 
-        return view('admin.ukur.list', compact('data'),$data);
+        if ($request->has('name')) {
+            // Menggunakan join dengan tabel User jika ada relasi
+            $query->whereHas('user', function ($q) use ($request) {
+                $q->where('name', 'like', '%' . $request->get('name') . '%');
+            });
+        }
 
+        $getRecord = $query->with('user')->paginate(10);
+
+        return view('admin.hasil.list', compact('getRecord'));
     }
 }

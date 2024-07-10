@@ -96,6 +96,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item">
+                    <a href="{{url('admin/hasil/list')}}" class="nav-link @if(request()->segment(2) == 'hasil') active @endif">
+                        <i class="nav-icon far fa-user"></i>
+                        <p>Hasil</p>
+                    </a>
+                </li>
+
                 <!-- Add other admin-specific menu items here -->
                 @elseif(Auth::user()->user_type == 2)
                 <li class="nav-item">
